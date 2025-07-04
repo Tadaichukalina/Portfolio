@@ -1,0 +1,338 @@
+1. Таблиця Employees.
+Напишіть запит для вибору імен, прізвищ, окладів усіх працівників та їх id департаменту, оклад яких не перевищує 10000.
+
+SELECT FIRST_NAME, LAST_NAME, SALARY, DEPARTMENT_ID 
+FROM HR.employees 
+where SALARY <=10000;
+
+2. Таблиця Employees.
+Напишіть запит для відображення імен, прізвищ, ідентифікаторів посад та комісійних винагород всіх працівників, які не мають права на отримання комісійної винагороди.
+
+SELECT FIRST_NAME, LAST_NAME, EMPLOYEE_ID, COMMISSION_PCT 
+FROM HR.employees 
+where COMMISSION_PCT IS NULL;
+
+3. Таблиця Employees.
+Напишіть 2 варіанти запиту для відображення списку всіх імен, прізвищ та їх id департаменту, де імʼя співробітника John.
+
+SELECT FIRST_NAME, LAST_NAME, DEPARTMENT_ID 
+FROM HR.employees 
+where FIRST_NAME LIKE 'John';
+SELECT FIRST_NAME, LAST_NAME, DEPARTMENT_ID 
+FROM HR.employees 
+where FIRST_NAME = 'John';
+
+4. Таблиця Employees.
+Напишіть запит для відображення імен, прізвищ співробітників із ЗП із 80-го департаменту і ЗП менше 10000.
+
+SELECT FIRST_NAME, LAST_NAME, SALARY, DEPARTMENT_ID 
+FROM HR.employees 
+where DEPARTMENT_ID=80 and SALARY < 10000;
+
+
+5. Таблиця Employees.
+Напишіть запит для відображення імен, прізвищ співробітників із ЗП із 80-го і із 110 департаменту, ЗП яких знаходиться в діапазоні від 10000 до 17000.
+
+SELECT FIRST_NAME, LAST_NAME, DEPARTMENT_ID, SALARY 
+FROM HR.employees 
+where DEPARTMENT_ID IN (80, 110) and SALARY BETWEEN 10000 and 17000;
+
+6. Таблиця Employees.
+Напишіть запит для відображення імен, прізвищ співробітнків із ЗП із 80-го і із 110 департаменту, ЗП яких знаходиться в діапазоні від 10000 до 17000 і які отримують комісію.
+
+SELECT FIRST_NAME, LAST_NAME, COMMISSION_PCT, DEPARTMENT_ID, SALARY 
+FROM HR.employees 
+where DEPARTMENT_ID IN (80, 110) and SALARY BETWEEN 10000 and 17000 AND COMMISSION_PCT is NOT NULL;
+
+7. Таблиця Employees.
+Напишіть запит для відображення списку всіх імен, прізвищ співробітників, у кого імʼя починається на D та підпорядковується менеджеру 108.
+
+SELECT FIRST_NAME, LAST_NAME, MANAGER_ID 
+FROM HR.employees 
+where FIRST_NAME LIKE 'D%'and MANAGER_ID=108;
+
+8. Таблиця Employees.
+Напишіть запит для відображення всіх даних співробітників, хто підпорядковується менеджерам 100, 108, 124.
+
+SELECT * 
+FROM HR.employees 
+where MANAGER_ID IN (100, 108, 124);
+
+9. Таблиця Employees.
+Напишіть запит для відображення всіх даних співробітників, хто не отримує комісію та має ЗП менше 10000 та відсортуйте вибірку за зменшенням ЗП
+
+SELECT * 
+FROM HR.employees 
+where COMMISSION_PCT IS NULL and SALARY < 10000 ORDER BY SALARY DESC;
+
+10. Таблиця Employees.
+Напишіть запит для відображення прізвища і імʼя та ЗП, хто не отримує комісію та має ЗП менше 10000 та відсортуйте вибірку за зменшенням ЗП. Прізвище і імʼя відобразіть в одному полі, яке назвіть “List of employees for review”.
+Напишіть 2 варіанти запиту використовуючи різні оператори обʼєднання полів.
+
+SELECT concat (LAST_NAME,’’, FIRST_NAME) AS List_of_employees_for_review, SALARY, COMMISSION_PCT
+FROM HR.employees 
+where COMMISSION_PCT IS NULL and SALARY < 10000 
+ORDER BY SALARY DESC;
+
+SELECT LAST_NAME ||’’|| FIRST_NAME AS List_of_employees_for_review, SALARY, COMMISSION_PCT 
+FROM HR.employees 
+where COMMISSION_PCT IS NULL and SALARY < 10000 
+ORDER BY SALARY DESC;
+
+11. Таблиця DEPARTMENTS.
+Застосовуючи оператор CASE напишіть скрипт, який буде виводити список назв департаментів та нове поле “State”, яке буде заповнюватися в залежності від того, яке значення має поле LOCATION_ID.
+Для LOCATION_ID 1700 нове поле “State” має містити запис “Washington”,
+Для 1400 – “Texas”
+Для 1500 і 2500 – “California”
+Для 1800 – “ Ontario”
+2400 – “Other”
+2700 – “Bavaria”
+
+SELECT DEPARTMENT_NAME, LOCATION_ID,
+CASE
+    WHEN LOCATION_ID=1700 THEN 'Washington'
+    WHEN LOCATION_ID=1400 THEN 'Texas'
+    WHEN LOCATION_ID IN (1500, 2500) THEN 'California'
+    WHEN LOCATION_ID=1800 THEN 'Ontario'
+    WHEN LOCATION_ID=2400 THEN 'Other'
+    WHEN LOCATION_ID=2700 THEN 'Bavaria'
+    ELSE 'Unknown'
+END AS State
+FROM HR.DEPARTMENTS;
+
+
+12. Таблиця LOCATIONS.
+Напишіть запит для відображення інформації про кількість локацій компанії у кожному COUNTRY_ID та відсортуйте список від країни із найбільшою кількістю локацій компанії.
+
+SELECT country_id, COUNT (location_id) AS number_of_locations
+FROM HR.LOCATIONS
+GROUP BY COUNTRY_ID
+ORDER BY number_of_locations DESC;
+
+
+13. Таблиця LOCATIONS.
+Напишіть запит для відображення інформації про кількість локацій компанії у кожному COUNTRY_ID, вивівши інформацію тільки по країнам, де кількість локацій більше двох
+
+SELECT country_id, COUNT (location_id) AS number_of_locations
+FROM HR.LOCATIONS
+GROUP BY COUNTRY_ID
+HAVING COUNT (location_id) > 2;
+
+
+14. Таблиці LOCATIONS та COUNTRIES.
+Напишіть запит для відображення всіх значень полів STREET_ADDRESS, STATE_PROVINCE та COUNTRY_NAME та відсортуйте за алфавітом (від A до Z) назву країн.
+
+SELECT HR.LOCATIONS.STREET_ADDRESS, HR.LOCATIONS.STATE_PROVINCE, HR.COUNTRIES.COUNTRY_NAME
+FROM HR.LOCATIONS
+FULL JOIN HR.COUNTRIES ON HR.LOCATIONS.COUNTRY_ID = HR.COUNTRIES.COUNTRY_ID
+ORDER BY COUNTRY_NAME ASC;
+
+
+15. Таблиці LOCATIONS та COUNTRIES.
+Напишіть запит для розрахунку кількості STREET_ADDRESS за кожною із COUNTRY_NAME, які мають відповідні значення в обох таблицях. Виведіть усі показники.
+
+SELECT HR.COUNTRIES.COUNTRY_NAME, COUNT (HR.LOCATIONS.STREET_ADDRESS) AS COUNT_of_STREET_ADDRESS
+FROM HR.LOCATIONS
+JOIN HR.COUNTRIES ON HR.LOCATIONS.COUNTRY_ID = HR.COUNTRIES.COUNTRY_ID
+GROUP BY HR.COUNTRIES.COUNTRY_NAME;
+
+
+16. Таблиці LOCATIONS, COUNTRIES, REGIONS.
+Напишіть запит для відображення всіх значень полів, STATE_PROVINCE та COUNTRY_NAME, REGION_NAME.
+SELECT HR.LOCATIONS.STATE_PROVINCE, HR.COUNTRIES.COUNTRY_NAME, HR.REGIONS.REGION_NAME  
+FROM HR.LOCATIONS
+FULL JOIN HR.COUNTRIES ON HR.LOCATIONS.COUNTRY_ID = HR.COUNTRIES.COUNTRY_ID
+FULL JOIN HR.REGIONS ON HR.COUNTRIES.REGION_ID = HR.REGIONS.REGION_ID;
+
+
+17. Таблиці LOCATIONS, COUNTRIES, REGIONS.
+Напишіть запит для розрахунку кількості STREET_ADDRESS кількості COUNTRY_NAME для кожного REGION_NAME, які мають відповідні значення в усіх трьох таблицях. Виведіть усі показники.
+
+SELECT HR.REGIONS.REGION_NAME,
+COUNT(HR.LOCATIONS.STREET_ADDRESS) AS COUNT_of_STREET_ADDRESS,
+COUNT(HR.COUNTRIES.COUNTRY_NAME) AS COUNT_OF_COUNTRY_NAME
+FROM HR.REGIONS
+JOIN HR.COUNTRIES ON HR.REGIONS.REGION_ID = HR.COUNTRIES.REGION_ID
+JOIN HR.LOCATIONS ON HR.COUNTRIES.COUNTRY_ID = HR.LOCATIONS.COUNTRY_ID
+GROUP BY HR.REGIONS.REGION_NAME;
+
+
+18. Таблиці LOCATIONS, COUNTRIES, REGIONS.
+Напишіть запит для розрахунку кількості STREET_ADDRESS, кількості COUNTRY_NAME для кожного REGION_NAME, які мають відповідні значення в усіх трьох таблицях. Виведіть усі показники. Напишіть скрипт використовуючи аліаси для назв таблиць.
+
+SELECT HR.r.region_name,
+COUNT(HR.l.street_address) AS count_of_street_address,
+COUNT(HR.c.country_name) AS count_of_country_name
+FROM HR.regions r
+JOIN HR.countries c ON HR.r.region_id = HR.c.region_id
+JOIN HR.locations l ON HR.c.country_id = HR.l.country_id
+GROUP BY HR.r.region_name;
+
+
+19. Таблиці LOCATIONS, COUNTRIES, REGIONS.
+Напишіть запит для розрахунку кількості STREET_ADDRESS кількості COUNTRY_NAME для кожного REGION_NAME, які мають відповідні значення в усіх трьох таблицях. Та виведіть ті REGION_NAME, де кількість COUNTRY_NAME буде більше 6.
+
+SELECT HR.REGIONS.REGION_NAME,
+COUNT(HR.LOCATIONS.STREET_ADDRESS) AS COUNT_of_STREET_ADDRESS,
+COUNT(HR.COUNTRIES.COUNTRY_NAME) AS COUNT_OF_COUNTRY_NAME
+FROM HR.REGIONS
+JOIN HR.COUNTRIES ON HR.REGIONS.REGION_ID = HR.COUNTRIES.REGION_ID
+JOIN HR.LOCATIONS ON HR.COUNTRIES.COUNTRY_ID = HR.LOCATIONS.COUNTRY_ID
+GROUP BY HR.REGIONS.REGION_NAME
+HAVING COUNT (HR.COUNTRIES.COUNTRY_NAME) > 6;
+
+
+20. Таблиці LOCATIONS, COUNTRIES, REGIONS.
+Напишіть запит для розрахунку кількості STREET_ADDRESS кількості COUNTRY_NAME для кожного REGION_NAME, які мають відповідні значення в усіх трьох таблицях. Та виведіть ті REGION_NAME, де кількість COUNTRY_NAME буде більше 6. Виведіть усі показники. Напишіть скрипт використовуючи аліаси для назв полів.
+SELECT HR.r.REGION_NAME,
+COUNT(HR.l.STREET_ADDRESS) AS COUNT_of_STREET_ADDRESS,
+COUNT(HR.c.COUNTRY_NAME) AS COUNT_OF_COUNTRY_NAME
+FROM HR.REGIONS r
+JOIN HR.COUNTRIES c ON HR.r.REGION_ID = HR.c.REGION_ID
+JOIN HR.LOCATIONS l ON HR.c.COUNTRY_ID = HR.l.COUNTRY_ID
+GROUP BY HR.r.REGION_NAME
+HAVING COUNT (HR.c.COUNTRY_NAME) > 6;
+
+21. Таблиці JOB_HISTORY, EMPLOYEES
+Оператор UNION
+Напишіть запит в якому будуть відображатися поля ідентифікатор співробітника, дата найму та дата звільнення. Якщо співробітник досі працює в компанії дата звільнення має бути null.
+
+SELECT EMPLOYEE_ID, HIRE_DATE, NULL AS END_DATE
+FROM HR.EMPLOYEES
+WHERE EMPLOYEE_ID NOT IN (SELECT EMPLOYEE_ID FROM HR.JOB_HISTORY)
+UNION
+SELECT EMPLOYEE_ID, START_DATE, END_DATE FROM HR.JOB_HISTORY;
+
+
+22. Таблиці JOB_HISTORY, EMPLOYEES
+Оператор UNION
+Напишіть запит в якому буде відображатися статус співробітника (status) із варіантами заповнення current_employees – якщо співробітник досі працює в компанії і fired_emloyees – якщо співробітник звільнився та кількість співробітників за кожним із цих статусів
+
+SELECT 'current_employees' AS status, COUNT (*) AS quantity_of_employees
+FROM HR.EMPLOYEES
+WHERE EMPLOYEE_ID NOT IN (SELECT EMPLOYEE_ID FROM HR.JOB_HISTORY)
+UNION
+SELECT 'fired_emloyees' AS status, COUNT (*) AS quantity_of_employees
+FROM HR.JOB_HISTORY;
+
+
+23. Таблиці JOB_HISTORY, EMPLOYEES
+Оператор UNION
+Напишіть запит в якому буде відображатися статус співробітника (status) із варіантами заповнення current_employees – якщо співробітник досі працює в компанії і fired_emloyees – якщо співробітник звільнився та кількість співробітників за кожним із цих статусів групуючи ці показники за ідентифікатором посади.
+
+
+SELECT JOB_ID, 'current_employees' AS status, COUNT (*) AS quantity_of_employees
+FROM HR.EMPLOYEES
+WHERE EMPLOYEE_ID NOT IN (SELECT EMPLOYEE_ID FROM HR.JOB_HISTORY)
+GROUP BY JOB_ID
+UNION
+SELECT JOB_ID, 'fired_emloyees' AS status, COUNT (*) AS quantity_of_employees
+FROM HR.JOB_HISTORY
+GROUP BY JOB_ID;
+
+
+24. Таблиці JOB_HISTORY, EMPLOYEES.
+SUBQUERY
+Напишіть запит в якому буде відображатися за зменшенням кількість співробітників за кожним департаментом, лише серед тих департаментів, де було звільнено більше 1 співробітника.
+
+SELECT department_id, COUNT(employee_id) as Employees
+FROM hr.employees
+WHERE department_id in (SELECT department_id FROM hr.job_history GROUP BY department_id HAVING COUNT(*) > 1)
+GROUP BY department_id
+ORDER BY employees DESC;
+
+25. Таблиці JOB_HISTORY, EMPLOYEES.
+SUBQUERY
+Напишіть запит в якому буде відображатися ідентифікатори співробітників, імена, прізвища тільки із тих департаментів, де є співробітники, які працювали менше року)
+
+SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, DEPARTMENT_ID
+FROM HR.EMPLOYEES
+WHERE DEPARTMENT_ID IN (SELECT DEPARTMENT_ID FROM HR.JOB_HISTORY WHERE MONTHS_BETWEEN(END_DATE, START_DATE) < 12);
+
+26. Таблиці JOB_HISTORY, EMPLOYEES.
+SUBQUERY
+Напишіть запит в якому буде відображатися ідентифікатори співробітників, імена, прізвища тільки за умови, якщо в цьому департаменті є співробітники, які пропрацювали більше року
+
+SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, DEPARTMENT_ID
+FROM HR.EMPLOYEES
+WHERE DEPARTMENT_ID IN (SELECT DEPARTMENT_ID
+                        FROM HR.JOB_HISTORY
+                        WHERE MONTHS_BETWEEN(END_DATE, START_DATE) > 12);
+
+
+27. Таблиці JOB_HISTORY, EMPLOYEES.
+SUBQUERY
+Напишіть запит в якому буде відображатися кількість співробітників за кожним із департаментів тільки за умови, якщо в цьому департаменті є співробітники, які пропрацювали більше року. Відсортуйте всі записи за зменшенням кількості співробітників.
+
+SELECT DEPARTMENT_ID, COUNT (EMPLOYEE_ID) AS quantity_of_employees
+FROM HR.EMPLOYEES
+WHERE DEPARTMENT_ID IN (SELECT DEPARTMENT_ID 
+                        FROM HR.JOB_HISTORY 
+                        WHERE MONTHS_BETWEEN(END_DATE, START_DATE) > 12)
+GROUP BY DEPARTMENT_ID
+ORDER BY quantity_of_employees DESC;
+
+
+28. Таблиця EMPLOYEES
+Напишіть скрипт, який має додавати запис у таблицю із вашим іменем і прізвищем. Дата найму завжди має бути сьогоднішнім числом, зп = 25000, департамент = 110, менеджер 205. Інші поля можуть бути заповнені довільно.
+
+INSERT INTO HR.EMPLOYEES (HR.EMPLOYEES.employee_id, HR.EMPLOYEES.first_name, HR.EMPLOYEES.last_name, HR.EMPLOYEES.email, HR.EMPLOYEES.phone_number, HR.EMPLOYEES.hire_date, HR.EMPLOYEES.job_id, HR.EMPLOYEES.salary, HR.EMPLOYEES.commission_pct, HR.EMPLOYEES.manager_id, HR.EMPLOYEES.department_id)
+VALUES (344, 'Alina', 'Tadaichuk', 'alina_tadaichuk@ukr.net', '0836987754', SYSDATE, 'IT_PROG', 25000, null, 205, 110);
+
+29. Таблиця EMPLOYEES.
+Напишіть скрипт, який має оновлювати створений вище запис у таблиці із вашим іменем і прізвищем. Змініть у цьому записі департамент на 90, а ЗП на 30000.
+
+UPDATE HR.EMPLOYEES
+SET department_id = 90, salary = 30000
+WHERE employee_id = 344;
+
+
+30. Таблиця EMPLOYEES
+Напишіть скрипт, який має видаляти створений вами запис у таблиці.
+
+DELETE
+FROM HR.EMPLOYEES
+WHERE employee_id = 344;
+
+31. Оберіть усі строки із таблиці OrderDetail, де вартість замовлення більше 50 або кількість замовлень більше 10
+
+SELECT OrderDetail_HeaderID, OrderDetail_ArticleNumber, OrderDetail_Quantity, OrderDetail_Quantity * OrderDetail_Price AS Total_amount
+FROM OrderDetail
+WHERE (OrderDetail_Quantity * OrderDetail_Price) > 50
+OR OrderDetail_Quantity > 10;
+
+
+
+32. Виведіть усі унікальні значення записів OrderDetail_ArticleNumber за алфавітним порядком
+
+SELECT DISTINCT OrderDetail_ArticleNumber
+FROM OrderDetail
+ORDER BY OrderDetail_ArticleNumber ASC;
+
+
+33. Виберіть замовлення (OrderHeader_Number, OrderHeader_Description), у яких кількість рядків деталей (з таблиці OrderDetail) перевищує 1
+
+
+SELECT OrderHeader.OrderHeader_Number, OrderHeader.OrderHeader_Description, COUNT (OrderDetail.OrderDetail_Quantity) AS Total_quantity
+FROM OrderHeader
+JOIN OrderDetail ON OrderHeader.OrderHeader_ID = OrderDetail.OrderDetail_HeaderID
+GROUP BY OrderHeader.OrderHeader_Number, OrderHeader.OrderHeader_Description
+HAVING COUNT (OrderDetail.OrderDetail_Quantity) > 1;
+
+
+34. Виберіть загальну кількість і суму (як кількість*ціна) для кожної статті (артикула) для всіх замовлень
+
+SELECT OrderDetail_ArticleNumber, SUM (OrderDetail_Quantity) AS Total_Quantity, SUM (OrderDetail_Quantity * OrderDetail_Price) AS Total_Amount
+FROM OrderDetail
+GROUP BY OrderDetail_ArticleNumber;
+
+
+35 . Напишіть запит для відображення всіх записів полів OrderHeader_Number,  OrderHeader_Description та OrderDetail_ArticleNumber, OrderDetail_Quantity, OrderDetail_Price за умови, що OrderDetail_Quantity  більше 3 та відсортуйте всі записи за збільшенням вартості.
+SELECT OrderHeader.OrderHeader_Number, OrderHeader.OrderHeader_Description, OrderDetail.OrderDetail_ArticleNumber, OrderDetail.OrderDetail_Quantity, OrderDetail.OrderDetail_Price, OrderDetail.OrderDetail_Quantity * OrderDetail.OrderDetail_Price AS Total_amount
+FROM OrderHeader
+JOIN OrderDetail ON OrderHeader.OrderHeader_ID = OrderDetail.OrderDetail_HeaderID
+WHERE OrderDetail.OrderDetail_Quantity > 3
+ORDER BY OrderDetail.OrderDetail_Quantity * OrderDetail.OrderDetail_Price ASC;
+
+
+
