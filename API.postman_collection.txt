@@ -1,0 +1,1283 @@
+{
+	"info": {
+		"_postman_id": "a99d8856-8a5a-482f-b164-96180c7f73c6",
+		"name": "PetStore",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44761276",
+		"_collection_link": "https://alinatadaichuk.postman.co/workspace/Alina-Tadaichuk's-Workspace~2a69cf93-93ab-4705-8bcf-8b452191b1ce/collection/44761276-a99d8856-8a5a-482f-b164-96180c7f73c6?action=share&source=collection_link&creator=44761276"
+	},
+	"item": [
+		{
+			"name": "AddNewPet_2хх",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"AddNewPetId\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(9223372036854775807);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"NewPetCategoryId\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.category.id).to.eql(1);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"NewPetCategoryName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.category.name).to.eql(\"doggie\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"NewPetName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(\"Akim\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"NewPetPhoto\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.photoUrls[0]).to.eql(\"https://th.bing.com/th/id/R.9bdcf90be30ac25a8382d43ef58fc49a?rik=Jk%2bigGtc0IDMDQ&riu=http%3a%2f%2fmirsobak.net%2fwp-content%2fuploads%2fzolotistyj-retriver-05.jpg&ehk=7MmL2QUhOECRrGb7HDxE96t3NuIZSy4sEnpH6Yu%2bmB4%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"NewPetTagsId\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.tags[0].id).to.eql(1);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"NewPetTagsName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.tags[0].name).to.eql(\"white\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"NewPetStatus\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"pending\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"category\": {\r\n    \"id\": 1,\r\n    \"name\": \"doggie\"\r\n  },\r\n  \"name\": \"Akim\",\r\n  \"photoUrls\": [\r\n    \"https://th.bing.com/th/id/R.9bdcf90be30ac25a8382d43ef58fc49a?rik=Jk%2bigGtc0IDMDQ&riu=http%3a%2f%2fmirsobak.net%2fwp-content%2fuploads%2fzolotistyj-retriver-05.jpg&ehk=7MmL2QUhOECRrGb7HDxE96t3NuIZSy4sEnpH6Yu%2bmB4%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 1,\r\n      \"name\": \"white\"\r\n    }\r\n  ],\r\n  \"status\": \"pending\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateExistingPet_2хх",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"UpdateId\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(9223372036854775807);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"UpdateCategoryId\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.category.id).to.eql(1);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"UpdateCategoryName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.category.name).to.eql(\"dog\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"UpdateName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(\"Mini\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"UpdatePhoto\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.photoUrls[0]).to.eql(\"https://th.bing.com/th/id/R.9bdcf90be30ac25a8382d43ef58fc49a?rik=Jk%2bigGtc0IDMDQ&riu=http%3a%2f%2fmirsobak.net%2fwp-content%2fuploads%2fzolotistyj-retriver-05.jpg&ehk=7MmL2QUhOECRrGb7HDxE96t3NuIZSy4sEnpH6Yu%2bmB4%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"UpdateTagsId\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.tags[0].id).to.eql(2);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"UpdateTagsName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.tags[0].name).to.eql(\"black\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"UpdateTagsId2\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.tags[1].id).to.eql(3);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"UpdateTagsName2\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.tags[1].name).to.eql(\"kind\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"UpdateStatus\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"available\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 9223372036854775807,\r\n  \"category\": {\r\n    \"id\": 1,\r\n    \"name\": \"dog\"\r\n  },\r\n  \"name\": \"Mini\",\r\n  \"photoUrls\": [\r\n    \"https://th.bing.com/th/id/R.9bdcf90be30ac25a8382d43ef58fc49a?rik=Jk%2bigGtc0IDMDQ&riu=http%3a%2f%2fmirsobak.net%2fwp-content%2fuploads%2fzolotistyj-retriver-05.jpg&ehk=7MmL2QUhOECRrGb7HDxE96t3NuIZSy4sEnpH6Yu%2bmB4%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 2,\r\n      \"name\": \"black\"\r\n    },\r\n    {\r\n      \"id\": 3,\r\n      \"name\": \"kind\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FindPetsByStatus_4хх",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet/findByStatus?status=reserved",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet",
+						"findByStatus"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "status",
+							"value": "reserved"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FindPetByID_4хх",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Pet not found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(\"Pet not found\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet/92233720368547758",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet",
+						"92233720368547758"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletesPet_4хх",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "api-key",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet/{petID}",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet",
+						"{petID}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddNewPet_4хх",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"category\": {\r\n    \"id\": 1,\r\n    \"name\": 12345\r\n  },\r\n  \"name\": \"Akim\",\r\n  \"photoUrls\": [\r\n    \"https://th.bing.com/th/id/R.9bdcf90be30ac25a8382d43ef58fc49a?rik=Jk%2bigGtc0IDMDQ&riu=http%3a%2f%2fmirsobak.net%2fwp-content%2fuploads%2fzolotistyj-retriver-05.jpg&ehk=7MmL2QUhOECRrGb7HDxE96t3NuIZSy4sEnpH6Yu%2bmB4%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 1,\r\n      \"name\": \"white\"\r\n    }\r\n  ],\r\n  \"status\": \"pending\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateExistingPet_4хх",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 9223372036854775807,\r\n  \"category\": {\r\n    \"id\": 1,\r\n    \"name\": \"doggie\"\r\n  },\r\n  \"name\": \"Akim\",\r\n  \"photoUrls\": [\r\n    \"https://th.bing.com/th/id/R.9bdcf90be30ac25a8382d43ef58fc49a?rik=Jk%2bigGtc0IDMDQ&riu=http%3a%2f%2fmirsobak.net%2fwp-content%2fuploads%2fzolotistyj-retriver-05.jpg&ehk=7MmL2QUhOECRrGb7HDxE96t3NuIZSy4sEnpH6Yu%2bmB4%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 1,\r\n      \"name\": \"white\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FindPetsByStatus_2хх",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"FindPetStatus\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData[0].status).to.eql(\"pending\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "key",
+						"value": "pending",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet/findByStatus?status=pending",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet",
+						"findByStatus"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "status",
+							"value": "pending"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FindPetByID_2хх",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"FindByIdId\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(989898);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"FindByIdCategoryId\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.category.id).to.eql(1);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"FindByIdCategoryName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.category.name).to.eql(\"cat\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"FindByIdName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(\"Busya\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"FindByIdPhoto\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.photoUrls[0]).to.eql(\"https://zoocomplex.com.ua/image/catalog/blog/article-id-532/article-id-532-01.webp\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"FindByIdTagsId\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.tags[0].id).to.eql(1);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"FindByIdTagsName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.tags[0].name).to.eql(\"little\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"FindByIdStatus\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"sold\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet/989898",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet",
+						"989898"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletesPet_2хх",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"DeleteCode\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.code).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"DeleteType\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.type).to.eql(\"unknown\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"DeleteMessage\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(\"9223372036854775807\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "api-key",
+						"value": "9223372036854775807",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet/9223372036854775807",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet",
+						"9223372036854775807"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
+
+
+
+
+
+{
+	"info": {
+		"_postman_id": "c9ee1a90-7624-4203-879b-0c2ebc5939cc",
+		"name": "ExamAPI_Tadaichuk",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44761276",
+		"_collection_link": "https://alinatadaichuk.postman.co/workspace/Alina-Tadaichuk's-Workspace~2a69cf93-93ab-4705-8bcf-8b452191b1ce/collection/44761276-c9ee1a90-7624-4203-879b-0c2ebc5939cc?action=share&source=collection_link&creator=44761276"
+	},
+	"item": [
+		{
+			"name": "AddNewPet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 914051994,\r\n  \"category\": {\r\n    \"id\": 1,\r\n    \"name\": \"dog\"\r\n  },\r\n  \"name\": \"Hatiko\",\r\n  \"photoUrls\": [\r\n    \"https://th.bing.com/th/id/R.9bdcf90be30ac25a8382d43ef58fc49a?rik=Jk%2bigGtc0IDMDQ&riu=http%3a%2f%2fmirsobak.net%2fwp-content%2fuploads%2fzolotistyj-retriver-05.jpg&ehk=7MmL2QUhOECRrGb7HDxE96t3NuIZSy4sEnpH6Yu%2bmB4%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 2,\r\n      \"name\": \"golden\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FindPetByID_914051994",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"FindByIdId\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(989898);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"FindByIdCategoryId\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.category.id).to.eql(1);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"FindByIdCategoryName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.category.name).to.eql(\"cat\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"FindByIdName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(\"Busya\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"FindByIdPhoto\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.photoUrls[0]).to.eql(\"https://zoocomplex.com.ua/image/catalog/blog/article-id-532/article-id-532-01.webp\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"FindByIdTagsId\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.tags[0].id).to.eql(1);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"FindByIdTagsName\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.tags[0].name).to.eql(\"little\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"FindByIdStatus\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"sold\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet/914051994",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet",
+						"914051994"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check_1",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"petId\": 914051994,\r\n  \"quantity\": 1,\r\n  \"shipDate\": \"2025-06-02T14:50:51.773Z\",\r\n  \"status\": \"placed\",\r\n  \"complete\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/store/order",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"store",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check_2",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 9223372036854775807,\r\n  \"petId\": 914051994,\r\n  \"quantity\": 1,\r\n  \"shipDate\": 20250530,\r\n  \"status\": \"placed\",\r\n  \"complete\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/store/order",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"store",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check_3",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 9223372036854775807,\r\n  \"petId\": 914051994,\r\n  \"quantity\": 1,\r\n  \"shipDate\": true,\r\n  \"status\": \"placed\",\r\n  \"complete\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/store/order",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"store",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check_4",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 9223372036854775807,\r\n  \"petId\": 914051994,\r\n  \"quantity\": 1,\r\n  \"shipDate\": null,\r\n  \"status\": \"placed\",\r\n  \"complete\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/store/order",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"store",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check_5",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 9223372036854775807,\r\n  \"petId\": 914051994,\r\n  \"quantity\": 1,\r\n  \"shipDate\": \"02-06-2025T14:39:51.773Z\",\r\n  \"status\": \"placed\",\r\n  \"complete\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/store/order",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"store",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check_6",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 9223372036854775807,\r\n  \"petId\": 914051994,\r\n  \"quantity\": 1,\r\n  \"shipDate\": \"2011-03-19Т15:29:51.773Z\",\r\n  \"status\": \"placed\",\r\n  \"complete\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/store/order",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"store",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check_7",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 9223372036854775807,\r\n  \"petId\": 914051994,\r\n  \"quantity\": 1,\r\n  \"shipDate\": \"2028-06-02Т15:29:51.773Z\",\r\n  \"status\": \"placed\",\r\n  \"complete\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/store/order",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"store",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check_8",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 9223372036854775807,\r\n  \"petId\": 914051994,\r\n  \"quantity\": 1,\r\n  \"shipDate\": \"2025-06-02T14:50:51.773Z\",\r\n  \"status\": \"delivered\",\r\n  \"complete\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/store/order",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"store",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check_9",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 9223372036854775807,\r\n  \"petId\": 914051994,\r\n  \"quantity\": 1,\r\n  \"shipDate\": \"2025-06-02T14:50:51.773Z\",\r\n  \"status\": \"plased\",\r\n  \"complete\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/store/order",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"store",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check_10",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 9223372036854775807,\r\n  \"petId\": 914051994,\r\n  \"quantity\": 1,\r\n  \"shipDate\": \"2025-06-02T14:50:51.773Z\",\r\n  \"status\": null,\r\n  \"complete\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/store/order",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"store",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check_11",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 9223372036854775807,\r\n  \"petId\": 914051994,\r\n  \"quantity\": 1,\r\n  \"shipDate\": \"2025-06-02T14:50:51.773Z\",\r\n  \"status\": 89765,\r\n  \"complete\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/store/order",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"store",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check_12",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 9223372036854775807,\r\n  \"petId\": 914051994,\r\n  \"quantity\": 1,\r\n  \"shipDate\": \"2025-06-02T14:50:51.773Z\",\r\n  \"status\": false,\r\n  \"complete\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/store/order",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"store",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check_13",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 9223372036854775807,\r\n  \"petId\": 914051994,\r\n  \"quantity\": 1,\r\n  \"shipDate\": \"2025-06-02T14:50:51.773Z\",\r\n  \"status\": \"placed\",\r\n  \"complete\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/store/order",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"store",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check_14",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 9223372036854775807,\r\n  \"petId\": 914051994,\r\n  \"quantity\": 1,\r\n  \"shipDate\": \"2025-06-02T14:50:51.773Z\",\r\n  \"status\": \"placed\",\r\n  \"complete\": \"true\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/store/order",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"store",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check_15",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 9223372036854775807,\r\n  \"petId\": 914051994,\r\n  \"quantity\": 1,\r\n  \"shipDate\": \"2025-06-02T14:50:51.773Z\",\r\n  \"status\": \"placed\",\r\n  \"complete\": 1234\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/store/order",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"store",
+						"order"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
